@@ -22,7 +22,7 @@ class Settings(BaseSettings):
     # Model Selection
     complexity_threshold: int = Field(default=500)
     gemini_trigger_keywords: str = Field(
-        default="analyze,generate code,complex,explain in detail,research"
+        default="analyze|generate code|complex|explain in detail|research"
     )
     
     # WhatsApp Configuration
@@ -36,15 +36,15 @@ class Settings(BaseSettings):
     
     @property
     def gemini_keywords_list(self) -> List[str]:
-        """Parse Gemini trigger keywords into a list."""
-        return [k.strip().lower() for k in self.gemini_trigger_keywords.split(",")]
+        """Parse Gemini trigger keywords into a list (pipe-separated)."""
+        return [k.strip().lower() for k in self.gemini_trigger_keywords.split("|")]
     
     @property
     def allowed_numbers_list(self) -> List[str]:
-        """Parse allowed WhatsApp numbers into a list."""
+        """Parse allowed WhatsApp numbers into a list (pipe-separated)."""
         if not self.whatsapp_allowed_numbers:
             return []
-        return [n.strip() for n in self.whatsapp_allowed_numbers.split(",")]
+        return [n.strip() for n in self.whatsapp_allowed_numbers.split("|")]
     
     model_config = {
         "env_file": ".env",

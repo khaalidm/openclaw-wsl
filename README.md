@@ -44,9 +44,20 @@ cd /path/to/base-conf
 
 ### 3. Run the Installation Script
 
-This installs all dependencies (Node.js, Python, Ollama, Chromium):
+This installs all dependencies (Node.js, Python, Ollama, Chromium) and sets up the Python virtual environment:
 ```bash
 bash scripts/install-wsl.sh
+```
+
+The script will:
+- Install system dependencies (Node.js, Python, Ollama, Chromium)
+- Create a Python virtual environment in `./venv`
+- Install all Python packages from `pyproject.toml`
+- Make all scripts executable
+
+**Note:** If you only need to set up Python (e.g., dependencies already installed):
+```bash
+bash scripts/setup-python.sh
 ```
 
 ### 4. Configure Environment Variables
@@ -130,6 +141,7 @@ All configuration is done via the `.env` file:
 | `GEMINI_API_KEY` | - | Your Google Gemini API key |
 | `GEMINI_MODEL` | `gemini-1.5-pro` | Gemini model to use |
 | `COMPLEXITY_THRESHOLD` | `500` | Score threshold to switch to Gemini |
+| `GEMINI_TRIGGER_KEYWORDS` | `analyze\|generate code\|...` | Pipe-separated keywords that trigger Gemini |
 | `LOG_LEVEL` | `info` | Logging level (debug/info/warn/error) |
 
 ## Model Selection Logic

@@ -47,7 +47,7 @@ fi
 echo -e "${GREEN}✓ Ollama installed${NC}"
 
 # Install Chromium for WhatsApp Web
-echo -e "${YELLOW}[5/5] Installing browser dependencies for WhatsApp...${NC}"
+echo -e "${YELLOW}[5/6] Installing browser dependencies for WhatsApp...${NC}"
 sudo apt-get install -y chromium-browser || sudo apt-get install -y chromium
 
 # Make scripts executable
@@ -56,8 +56,14 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 
 chmod +x "$SCRIPT_DIR/install-wsl.sh"
+chmod +x "$SCRIPT_DIR/setup-python.sh"
 chmod +x "$PROJECT_DIR/start.sh"
 echo -e "${GREEN}✓ Scripts are now executable${NC}"
+
+# Setup Python environment
+echo ""
+echo -e "${YELLOW}[7/7] Setting up Python environment...${NC}"
+bash "$SCRIPT_DIR/setup-python.sh"
 
 echo ""
 echo -e "${GREEN}╔════════════════════════════════════════════╗${NC}"
@@ -65,6 +71,10 @@ echo -e "${GREEN}║   Installation Complete!                   ║${NC}"
 echo -e "${GREEN}╚════════════════════════════════════════════╝${NC}"
 echo ""
 echo "Next steps:"
-echo "  1. Copy .env.example to .env and add your Gemini API key"
-echo "  2. Run ./start.sh to start the agent"
+echo "  1. Copy .env.example to .env and add your Gemini API key:"
+echo "       cp .env.example .env"
+echo "       nano .env"
+echo ""
+echo "  2. Run the agent:"
+echo "       ./start.sh"
 echo ""

@@ -1,0 +1,40 @@
+# OpenClaw Agent
+
+# Dependencies
+node_modules/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Environment
+.env
+.env.local
+
+# WhatsApp session data
+data/whatsapp-session/
+.wwebjs_auth/
+.wwebjs_cache/
+
+# Logs
+logs/*.log
+logs/*.zip
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test
+.pytest_cache/
+.coverage
+htmlcov/
